@@ -4,65 +4,63 @@ title: The Guide to the Guide
 permalink: guide-to-the-guide
 ---
 
-# Your guide to the Rails Girls Guide!
+# Rails Girls ガイドのガイド!
 
-*Created by H Salmon to accompany the [app guide](/app).*
-
-This guide is an accompaniment to the [Rails Girls Guide](/app) you will be using to build your first Rails application. Its purpose is to provide background information about the structure of a Rails application, Rails terminology and commands, so you can understand what is happening when you are implementing the code in the Rails Girls Guide. We hope that this guide will provide you with a way to retain what you learn over the course of this workshop, and to maintain your interest in Rails development. Welcome!
-
-### [**1.** Creating the application](#1_create_the_application)
-Commands you need to know
-
-### [**2.** Creating Idea scaffold](#2_create_idea_scaffold)
-Scaffolding, models, migrations
-
-### [**3.** Designing](#3_design)
-The design layers ( HTML, CSS, ERB)
-MVC Architecture
-
-### [**4.** Adding picture uploads](#4_add_picture_uploads)
-Libraries, gems and open-source
-
-### [**5.** Finetuning the routes](#5_finetune_the_routes)
-routes, HTTP Methods: GET, POST, PUT and DELETE
+*Created by H Salmon [アプリ・チュートリアル](/app)と共に*
 
 
+このガイドは、最初の Rails アプリケーションを作成する[アプリ・チュートリアル](/app) を補足します。この文書の目的は、Rails アプリケーションの構造やRails の用語とコマンドについての基礎的な情報を提供することで、Rails Girls ガイドで、コードを作成する時に起こっていることを理解できるようにします。このガイドで、ワークショップのコースで学んだことを記憶にとどめたり、Rails での開発に興味を持ち続けたり、提供することを希望します。ようこそ!
+### [**1.** アプリケーションを作る](#1_create_the_application)
+知っておくべきコマンドについて
 
-## *1.* Create the application
+### [**2.** Idea の scaffold をする](#2_create_idea_scaffold)
+scaffold、モデル、そして、マイグレーションについて
 
-`mkdir projects` - makes a *directory* (folder) called “projects” in the folder you are currently in, most likely your home folder.
+### [**3.** デザインする](#3_design)
+デザイン層 (HTML, CSS, ERB) と MVC アーキテクチャーについて
+
+### [**4.** 写真アップロード機能を追加する](#4_add_picture_uploads)
+ライブラリ、gem、そして、オープンソースについて
+
+### [**5.** routes を調整する](#5_finetune_the_routes)
+routes と HTTP メソッド: GET, POST, PUT そして DELETE について
+
+
+
+## <a id="1_create_the_application">*1.* アプリケーションを作る</a>
+
+`mkdir projects` - 現在の場所（大抵はホームディレクトリ）に "projects" という*ディレクトリ* （または、フォルダ）を作成します。
 `mkdir` = **m**a**k**e **dir**ectory.
 
-`cd projects` - navigates to the “projects” folder you just created. `cd` = **c**hange **d**irectory.
+`cd projects` - 先ほど作成した "projects" フォルダへ移動します。`cd` = **c**hange **d**irectory.
 
-`rails new railsgirls` - creates a new Ruby on Rails application called **railsgirls** containing various auto-generated folders, in your *working directory* (the folder you are working in at the moment).
+`rails new railsgirls` - *ワーキングディレクトリ*（現在、作業しているフォルダ）に **railsgirls** という新しい Rails アプリケーションを作成すると共に様々なフォルダを自動生成します。
 
-`cd railsgirls` - navigates to the “railsgirls” folder.
+`cd railsgirls` - “railsgirls” フォルダへ移動します。
 
-`ruby script\rails server` - starts a local web server on your computer. This web server is accessed through the web address [http://localhost:3000](http://localhost:3000).
+`rails server` (`ruby bin¥rails server`) - あなたのコンピュータで動作するウェブサーバーを起動します。このウェブサーバーは、[http://localhost:3000](http://localhost:3000) というアドレスでアクセスすることができます。
 
-“Localhost” refers specifically to your computer (considered the “local host”), from which a server is being launched. Localhost provides a way for developers to see their application in a browser and test the functionality while it is still in development.
+"localhost" は、あなたのコンピュータを示します。“Localhost” refers specifically to your computer (considered the “local host”), from which a server is being launched. Localhost provides a way for developers to see their application in a browser and test the functionality while it is still in development.
 
-## *2.* Create Idea scaffold
-### What is Rails scaffolding?
-Every web application consists of many different concepts or resources (such as “users”, “ideas”, “posts”, “comments”, etc.).
-Rails scaffolding is a command (`rails generate scaffold`) for introducing a new resource into your application. It generates all of the code files necessary for representing and interacting with this resource.
-### What is a model?
-In Rails, a model represents a definition of a resource in your application, and how it should interact with other parts of the application. Depending on the nature of the website, these resources could be users, posts, groups etc. When a model is generated, a corresponding *database table* is created. This database table contains information that represents specified attributes of the model, e.g. for a User model, there might be a ‘name’ column and an ‘email’ column, and there will be rows for each subsequent user created. In the application you are creating, these resources are ideas and the model is ‘Idea’.
+## <a id="2_create_idea_scaffold">*2.* Idea の scaffold をする</a>
+### Rails scaffolding とは?
+ウェブアプリケーションは、多くの異なる概念、もしくは、リソースからなりたっています。（例えば、「ユーザー」、「アイデア」、「投稿」、「コメント」など）Rails scaffolding は、アプリケーションに新しいリソースを導入するコマンド（`rails generate scaffold'）です。この新しいリソースを表現したり操作したるするのに必要なコード全てを生成します。
+### モデルとは?
+Rails では、モデルは、アプリケーションでの単一リソースの定義とアプリケーションの他の箇所とやりとりをする方法を表現します。サイトの性質によって、これらのリソースは、ユーザー、投稿、グループといったようなものになります。モデルを生成する時に対応する*データベーステーブル*も作成されます。このデータベーステーブルは、モデルの特定の属性を表す情報を含んでいます。例えば、ユーザーモデルの場合、 'name' カラムと 'email' カラムがあるかもしれません。また、作成されるユーザーの情報はそれぞれの列に含まれるでしょう。作成するアプリケーションでは、これらのリソースとは、アイデアであり、そのモデルは、 'Idea' となります。
 
 {% highlight rb %}
 rails generate scaffold idea name:string description:text picture:string
 {% endhighlight %}
 
-In order to create our idea model, we use the `scaffold` command which includes an argument with the singular version of the model name (`idea`), and an argument with parameters (specifications) for the model’s attributes. This means that the `idea` model corresponds to a table in the database with columns for the attributes specified in the command: `name`, `description` and `picture`. The `scaffold` command also auto-generates an `id` attribute, referred to as the `primary key`, which is used to establish relationships between database tables.
+アイデアモデルを作成するには、 `scaffold` コマンドを使用します。そのコマンドの引数として、モデルの名前（`idea`）の単数形とモデルの属性のパラメータ（仕様）を渡します。`idea` モデルは、`name`、`description`、そして、`picture` というコマンドで指定された属性のカラムを持つデータベーステーブルに対応するということを意味します。`scaffold` コマンドは、`id` 属性を自動的に作成します。その属性は、`主キー`と呼ばれ、データベースのテーブル間で関連を構築することに利用されます。
 
-`rails generate scaffold` - this calls the scaffold command.
+`rails generate scaffold` - scaffold コマンドと呼びます。
 
-`idea` - this tells the scaffold command what we want to call our model.
+`idea` - 作成するモデルの名前を scaffold コマンドに伝えます。
 
-`name:string description:text picture:string` - provides a list of attributes we want our model (and the database table that goes with it) to have. The `string` and `text` parts of the argument determine the nature of each attribute, i.e. each description needs to be ‘text’, and not, for example, an ‘integer’ (or any other type of information).
+`name:string description:text picture:string` - モデル（及び、関連するデータベーステーブル）に付与したい属性の一覧を提示します。引数の中の `string` や `text` は、それぞれの属性の性質を決めます。例えば、description （説明）は 'integer' とかではなく、'text' である必要があります。
 
-### The ideas table
+### ideas テーブルの例
 
 <table class="table table-hover table-bordered">
 	<thead>
@@ -95,105 +93,112 @@ In order to create our idea model, we use the `scaffold` command which includes 
 	</tbody>
 </table>
 
-### Naming conventions
+### 命名規約
 
 #### Active Record
-In Rails, the default system for communicating with an application’s database is called *Active Record*, which provides various methods for creating, saving, and finding data. To retrieve information from the database, *Active Record* establishes relationships between different parts of the application using naming conventions:
-- Table names have all lowercase letters and underscores between words, e.g. “idea”, “invoice_items”
-- The model is named using the convention of unbroken MixedCase and is always the singular of the table name, e.g. if the table name is “invoice_items”, the model name would be “InvoiceItem”. So, in this case our table name is ideas and our model is Idea.
+Rails で、アプリケーションのデータベースとやりとりをするデフォルトのシステムは、*Active Record* と呼ばれるシステムです。*Active Record* は、データを作成、保存、そして、検索する色々なメソッドを提供しています。データベースから情報を取り出すために *Active Record* は、命名規約を使って異なる部分同士の関連を確立します:
 
-#### Model attributes and types
+- テーブル名は全て小文字と単語の間を結ぶアンダースコア（\_）から成り立ちます。例、"ideas"、"invoice\_items"
+- モデルは、連続した大文字と小文字が混在するという規約で命名されており、常に単数形です。例えば、テーブル名が "invoice\_items" の場合、モデル名は "InvoiceItem" になります。ですので、私たちが作成するテーブル名は、"ideas" なので、モデルは、"Idea" となります。
 
-As we’ve already discussed, a model can have attributes (properties) represented by columns in the corresponding database table. To be supported by the Active Record system, these attributes must conform to a list of appropriate types:
+#### モデルの属性と型
 
-- `:binary` - stores data such as images, audio files or movies
+既に説明しましたようにモデルは、対応するデータベーステーブルのカラムを表現する属性（プロパティ）を持ちます。Active Record の属性で利用できる型の一覧を以下に示します。
 
-- `:boolean` - stores true or false values (such as whether a particular user is an administrator of an application or not)
+- `:binary` - 画像、音声、動画といったデータを格納します
 
-- `:date` - stores only a date (year, month, day)
+- `:boolean` - 真、もしくは、偽値を格納します（あるユーザーがアプリケーションの管理者であるかをどうかを示す場合などに使用します。）
 
-- `:datetime` - stores both a date and a time
+- `:date` - 日付（年、月、日）を格納します
 
-- `:decimal` - stores decimal numbers with precision that varies according to your specifications
+- `:datetime` - 日付と時刻を格納します
 
-- `:float` - stores decimal points with fixed precision i.e. you can’t specify the precision (`:decimal` is better for mathematical operations in which precision is required, but `:float` is processed faster and is better in situations where speed is required and accuracy is secondary)
+- `:decimal` - 浮動小数点数を指定した精度とともに格納します
 
-- `:integer` - stores whole numbers
+- `:float` - 固定小数点数を格納します（精度が必要な数学操作には、`:decimal` がむいていますが、`:float` の方が、処理が早いので精度より速度が必要な場合にむいています。）
 
-- `:primary_key` - the primary key of a table is assumed to be the id
+- `:integer` - 整数を格納します
 
-- `:string` - stores 255 characters of text information, i.e. is used for short text fields (names, emails etc)
+- `:primary_key` -
+テーブルの主キーであることを示します。通常は、'id' です
 
-- `:text` - stores text information with no character limit (used for comments, blog posts etc)
+- `:string` - 255文字までの情報を格納します （名前やメールアドレスなで）短い文に適しています
 
-- `:time` - stores only a time
+- `:text` - 文字数制限なく文字情報を格納します（例えば、 コメントやブログ投稿などに使用されます）
 
-- `:timestamp` - stores both a time and date. `:timestamp` is different from `:datetime` and serves a different purpose, but there’s no need to go into that here
+- `:time` - 時刻のみを格納します
 
-### What are migrations and why do you need them?
+- `:timestamp` - 時刻と日付を格納します。`:timestamp` は、`:datetime` と違いがあり、異なる目的に果たしますが、それについては説明しません。
 
-Migrations change the state of the database. When you run the `scaffold` command, a migration file containing instructions for the database table relevant to your command is added to the `db/migrate` folder of your application. For example, when you ran the `rails generate scaffold` command, a migration containing instructions for our ideas table was created. There are other commands that create migrations such as the `rails generate model` command and the `rails generate migration` command.
+### マイグレーションとは何で、どうして必要なのでしょうか？
 
-The `rake db:migrate` command updates the database according to the specifications in the migration file. This command, known as “migrating up”, ensures that your idea model is added to the database. Migrations can also be undone (“migrating down”) using the command `rake db:rollback`.
+マイグレーションは、データベースの状態を変更します。`scaffold` コマンドを実行すると関連するデータベーステーブルへの指示が含まれているマイグレーションファイルが、アプリケーションの `db/migrate` フォルダの中に加わります。例えば、`rails generate scaffold` コマンドを実行した時、'ideas' テーブルのための指示が含まれているマイグレーションが作成されました。 `rails generate model` と `rails generate migration` といった マイグレーションを作成するコマンドが他にもあります。
 
-## *3.* Design
-In a Ruby on Rails application, the user interface (what someone visiting the website will see), is often written in HTML with Embedded Ruby (ERB) code. This code is contained in a specific directory called ‘views’, located in the `app` folder of your Rails application directory.
+`rake db:migrate`
+コマンドは、マイグレーションファイル内の仕様に従ってデータベースを更新します。"migrating up" として知られるこのコマンドは、idea モデルをデータベーステーブルに追加します。マイグレーションは、`rake db:rollback' コマンドで、元に戻すこともできます（"migrating down"）
+
+## <a id="3_design">*3.* デザインする</a>
+Rails アプリケーションでは、（サイトを訪問する人が目にする）ユーザーインターフェイスは、埋め込み Ruby （ERB、Embedded RuBy）を使った HTML で記述されます。ファイルは、Rails アプリケーションのディレクトリの `app` フォルダの中の 'views' にあります。
 
 ### HTML
-HTML, which stands for HyperText Markup Language, is the primary language for creating web pages and other information that can be displayed in a web browser. HTML is written using tags, angle brackets which tend to come in pairs (a “start tag” and an “end tag”), enclosing text-based content. In paired tags, the end tag also has a slash after the opening angle bracket, to distinguish it from the start tag. A paragraph (represented in HTML by the letter ‘p’) would use a start tag like this: `<p>` and an end tag like this: `</p>`, to enclose the text intended for display. Unpaired tags that are opened but don’t need to be closed (e.g. `<br>`, which defines a single line break) are known as “empty elements”. The web browser uses HTML tags to interpret how the contents will be displayed.
+HTML は、HyperText Markup Language
+（ハイパーテキスト・マークアップ言語）の略で、ウェブページやウェブブラウザで表示する情報を作成する主言語です。HTML は、タグを使って記述されます。タグは、山括弧を用いており、（"開始タグ"と"終了タグ"の）ペアになることが多く、テキストコンテンツを含んでいます。1対のタグでは、終了タグには開き山括弧の後にスラッシュ（/）があり、開始タグと区別します。段落（HTML では文字 'p' で表現）で、使用する開始タグは `<p>` で、終了タグは `</p>` になり、表示する文章はタグの中に納められます。終了タグが必要ないペアにならないタグ（例えば、単一の改行を定義する `<br>`）は、"空要素"として知られています。ウェブブラウザは、コンテンツがどのように表示されるかを解釈するのに HTML タグを使用します。
 
-### ERB: Embedded Ruby
-ERB is a system supplied by Ruby that allows you to insert pure Ruby code into files written in other languages, such as Javascript or HTML. The Ruby code is contained within specific angle brackets (`<%` and `%>`) which instruct the system to execute the contents. If an `=` sign accompanies the angle brackets, (`<%=` and %`>`) then the contents are executed and rendered on the page.
+### ERB: 埋め込み Ruby（Embedded RuBy）
+ERBは、JavaScriptやHTMLといった他の言語で書かれたファイルに純粋なRubyのコードを挿入するRubyが提供するシステムです。Rubyのコードは、特殊な山括弧（`<%` と `%>`）の中に含まれ、この山括弧がコードを実行するように指示します。もし、`=` 記号があれば（`<%=` と `%>`）、中のコードが実行され、（その結果が）ページに表示されます。
 
-For example, if you had 25 active ideas in your application, the code:
-`There are currently <%= Idea.count %> active ideas`
-would render as:
-> There are currently 25 active ideas
+例えば、アプリケーション内で、進行中のアイデアが25個ある場合、コード: `現在、進行中のアイデア: <%= Idea.count %>` は、次のように表示されます。
 
-### MVC Architecture
-In a standard Rails application (like you one you have generated), the `app/` folder of your application starts out with three folders (or directories): ‘models’ (which we have already discussed), ‘controllers’ and ‘views’. The relationship between these directories is the foundation (known as MVC Architecture) of the application, and of Rails development.
+> 現在、進行中のアイデア: 25
 
-When you ran the `rails generate scaffold` command, in addition to creating the idea model, you also created an accompanying ideas controller (`ideas_controller.rb`), located in the controllers folder, and an ideas views folder containing several files that you will use to create a dynamic application.
+### MVC アーキテクチャ
+標準的な Rails
+アプリケーション（あなたが作成したようなアプリケーションもそうです）では、`app/` フォルダで、代表的なのは次の3つのフォルダ（または、ディレクトリ）: （既に説明しました）‘models‘、‘controllers‘ そして ‘views‘ です。これらのディレクトリの関連は、アプリケーション、そして、Rails 開発のMVC                                       アーキテクチャとよばれる）基礎となります。
 
-When attempting to display a Rails website, a web browser sends a request via the server which eventually hits the Rails *controller*. *Controllers* act as mediators between the *views* and the *models*. When the *controller* receives the information it communicates with a *model* representing a resource of the application (in our case, an “idea”) which in turn communicates with the database. Upon retrieving the required information from the *model*, the *controller* renders the *view* which returns the complete web page to the browser as HTML.
+`rails generate scaffold` コマンドを実行した時、idea モデルを作成するともに付随する ideas コントローラ（`ideas_controller.rb`）を作成しました。そのファイルは、controllers フォルダ内にあります。ideas の views フォルダには、動的アプリケーションを作成するために使用するファイルが作成されています。
+
+Rails で作成されたウェブサイトを表示しようとする時、ウェブブラウザはサーバーへリクエストを送信します。そのリクエストは、結果的に Rails *コントローラ* へ達します。*コントローラ*は、*ビュー*と*モデル*との仲介役です。*コントローラ*が情報を受け取るとアプリケーションのリソースを表現する*モデル*（今回の場合は "idea"）とやりとりをします。*モデル*から必要な情報を受け取ると*コントローラ*は、*ビュー*を使って、HTML 形式の完全なページをブラウザに送信します。
 
 ### CSS and layouts
-CSS (Cascading Style Sheets) is a language used to describe the formatting of pages written in a ‘markup language’, i.e. a language for processing, defining and presenting text with a prescribed formatting code e.g. tags, that distinguish it from plain text. The most common application of CSS is in conjunction with HTML.
+CSS (Cascading Style Sheets) は‘マークアップ言語‘で記述されたページの書式を表現する言語です。‘マークアップ言語‘とは、タグなどの規定の書式コードを使ってテキストを処理、定義、そして、表現するための言語です。CSS は、HTML ともに利用されるのが最も一般的です。
 {% highlight css %}
 body { padding-top: 100px; }
 footer { margin-top: 100px; }
-table, td, th { vertical-align: middle !important; border: none !important; }
+table, td, th { vertical-align: middle; border: none; }
 th { border-bottom: 1px solid #DDD; }
 {% endhighlight %}
 
-Within the CSS you have applied:
+上記の CSS 内において:
 
-`body` - this part is known as the selector and refers to the HTML element you wish to style.
-`{ padding-top: 100px; }` - this part is known as the declaration; each declaration has a property which is the style attribute you wish to change (`padding-top`), and an associated value (`100px`). Declarations always end with a semicolon and declaration groups are always enclosed by curly brackets.
+`body` - この部分はセレクタと呼ばれ、装飾したい HTML 要素を参照します。this part is known as the selector and refers to the HTML element you wish to style.
+`{ padding-top: 100px; }` - この部分はスタイル宣言と呼ばれ、それぞれの宣言には装飾したい属性（`padding-top`）と値（`100px`）からなるプロパティがあります。スタイル宣言は常にセミコロンで終わり、複数の宣言は中括弧でまとめます。
 
-For each Rails application there is a default layout file called `application.html.erb`, located in the layouts folder of your views directory. With this file you can create a default format for all of the pages in your application.
+Rails アプリケーションでは、デフォルトのレイアウトファイルは、`application.html.erb` で、views ディレクトリの中の layouts フォルダにあります。このファイルで、アプリケーションの全てのページのデフォルトの体裁を作成することができます。
 
 {% highlight html %}
-	`<link rel="stylesheet" href="http://railsgirls.com/assets/bootstrap.css">`
+<link rel="stylesheet" href="http://railsgirls.com/assets/bootstrap.css">
 {% endhighlight %}
 
-In the above code, the `link rel` (link relation) is defining the nature of the URL that the `href` (hypertext reference) attribute is requesting content from. This argument indicates that the external source requested is a stylesheet and the web browser will need to fetch this file to render the page properly.
+上記のコードにおいて、`link rel` (link relation) は、`href` (hypertext reference) 属性で指定されるコンテンツを取得するURL の性質を定義します。この引数は、要求している外部ソースはスタイルシートで、ウェブブラウザは、ページを正しく表示するためにこのファイルを取得する必要があります。
 
-`<%= stylesheet_link_tag "application" %>`
+{% highlight erb %}
+<%= stylesheet_link_tag "application" %>
+{% endhighlight %}
 
-This code returns a stylesheet link tag for the source, in this case “application”, i.e. `application.css`. This means that the styling you implemented in application.css will be applied to the various pages of your application.
+このコードはスタイルシートリンクタグを返します。この場合、"application"、例えば、`application.css` になります。これは、`application.css` で実装する装飾は、アプリケーションの様々なページに適用されることになります。
 
 
 {% highlight erb %}
-	<div class="container">
-	  <%= yield %>
-	</div>
+<div class="container">
+  <%= yield %>
+</div>
 {% endhighlight %}
 
-In this code:
-- The HTML `div` tag divides the code into parts.
-- The *container class* adds additional styling to everything inside the div tags
-- The `<%= yield %>` argument is responsible for inserting the unique content from each page into the container `div`. This means that in your application the overall layout can be consistent even though the content will differ from page to page.
+このコードでは:
+
+- HTML `div` タグは、コードを分割します。
+- *container クラス*は、`div` タグ内の全てにさらなる装飾を追加します。
+- `<%= yield %>` 引数は、各ページ特有のコンテンツを`div` コンテナ内へ挿入します。これによって、各ページで内容が異なってもアプリケーションでレイアウト全体が一貫するようにできます。
 
 ## *4.* Add picture uploads
 
